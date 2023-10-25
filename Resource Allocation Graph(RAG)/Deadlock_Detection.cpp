@@ -11,7 +11,7 @@ int visited[26];
  void dfs(int node)
  {
     //Initially and checking of there is any associate visited node or not
-    visited[node];
+    visited[node] = 1;
     // traversing and checking of there is any associate visited node or not
     for(auto v:g[node])
     {
@@ -23,12 +23,12 @@ int visited[26];
         {
             //If we found any cycle it means we founded a deadlock which we will return from the function 
             // and before doing this we will make our trcker time.
-            if(!visited[v])
+            if(visited[v] == 1)
             {
                 hasCycle = true;
                 return ;
             }
-            }
+        }
     }
     visited[node] = 2;
  }
@@ -55,6 +55,23 @@ int main()
         if(!visited[i])
         dfs(i);
     }
-    //Checking if our there is my cycle or not
-    cout<<"Deadlock = "<<(hasCycle)?"Yes\n":"No\n";
+    //Checking if our there is my cycle or no t
+    cout<<"Deadlock = "<<(hasCycle ? "Yes\n": "No\n");
 }
+/*
+ 
+    R A
+    A S
+    C S
+    F S
+    W F
+    D S
+    U D
+    G U 
+    V G
+    D T 
+    T E
+    E V
+    B T
+
+*/
